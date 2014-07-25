@@ -71,6 +71,7 @@ int main(int argc, char *argv[])
     }
 
     w.initGraph(accXVec, accYVec, gyrXVec, gyrYVec, magXVec, magYVec);
+    w.setHeading();
 
     /*
     // Shift test code

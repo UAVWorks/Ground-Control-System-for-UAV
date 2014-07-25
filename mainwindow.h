@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #define DATA_NUM 1000
+#define PATH "/Users/jeongtaek/Dropbox/Development/GCS_for_UAV/Resources/"
 
 namespace Ui {
 class MainWindow;
@@ -46,10 +47,11 @@ public:
     ~MainWindow();
     void selectMap(gpsData d);
     void initGraph(QVector<double> accXVec, QVector<accData> accYVec, QVector<double> gyrXVec, QVector<gyrData> gyrYVec, QVector<double> magXVec, QVector<magData> magYVec);
-    void replotGraph(QVector<double> accXVec, QVector<accData> accYVec, QVector<double> gyrXVec, QVector<gyrData> gyrYVec, QVector<double> magXVec, QVector<magData> magYVec);
-    void drawAccGraph(accData ad);
-    void drawGyrGraph(gyrData gd);
-    void drawMagGraph(magData md);
+  //  void replotGraph(QVector<double> accXVec, QVector<accData> accYVec, QVector<double> gyrXVec, QVector<gyrData> gyrYVec, QVector<double> magXVec, QVector<magData> magYVec);
+  //  void drawAccGraph(accData ad);
+   // void drawGyrGraph(gyrData gd);
+  //  void drawMagGraph(magData md);
+    void setHeading();
 
 private:
     Ui::MainWindow *ui;

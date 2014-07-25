@@ -19,7 +19,8 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     jtserialport.h \
-    qcustomplot.h
+    qcustomplot.h \
+    ui_mainwindow.h
 
 FORMS    += mainwindow.ui
 

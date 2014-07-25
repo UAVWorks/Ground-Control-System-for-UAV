@@ -51,6 +51,7 @@ public:
     QLabel *label_3;
     QFrame *frame_10;
     QLabel *label_15;
+    QLabel *label;
     QFrame *frame_15;
     QLabel *label_17;
     QMenuBar *menuBar;
@@ -183,6 +184,10 @@ public:
         label_15->setGeometry(QRect(0, 0, 400, 30));
         label_15->setFont(font);
         label_15->setAlignment(Qt::AlignCenter);
+        label = new QLabel(frame_10);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(60, 170, 282, 45));
+        label->setAlignment(Qt::AlignCenter);
         frame_15 = new QFrame(frame_3);
         frame_15->setObjectName(QStringLiteral("frame_15"));
         frame_15->setGeometry(QRect(0, 600, 400, 338));
@@ -215,6 +220,7 @@ public:
         label_18->setText(QApplication::translate("MainWindow", "Motor Output", 0));
         label_3->setText(QApplication::translate("MainWindow", "Input Voltage", 0));
         label_15->setText(QApplication::translate("MainWindow", "Heading", 0));
+        label->setText(QApplication::translate("MainWindow", "Arrow", 0));
         label_17->setText(QApplication::translate("MainWindow", "Altitude", 0));
     } // retranslateUi
 

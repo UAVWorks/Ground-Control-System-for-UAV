@@ -153,6 +153,7 @@ DIST          = ../../../Qt/5.3/clang_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.3/clang_64/mkspecs/features/qt_config.prf \
 		../../../Qt/5.3/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../Qt/5.3/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../Qt/5.3/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/5.3/clang_64/mkspecs/features/default_pre.prf \
 		../../../Qt/5.3/clang_64/mkspecs/features/mac/default_pre.prf \
@@ -315,6 +316,7 @@ Makefile: GCS_for_UAV.pro ../../../Qt/5.3/clang_64/mkspecs/macx-clang/qmake.conf
 		../../../Qt/5.3/clang_64/mkspecs/features/qt_config.prf \
 		../../../Qt/5.3/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../Qt/5.3/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../Qt/5.3/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/5.3/clang_64/mkspecs/features/default_pre.prf \
 		../../../Qt/5.3/clang_64/mkspecs/features/mac/default_pre.prf \
@@ -447,6 +449,7 @@ Makefile: GCS_for_UAV.pro ../../../Qt/5.3/clang_64/mkspecs/macx-clang/qmake.conf
 ../../../Qt/5.3/clang_64/mkspecs/features/qt_config.prf:
 ../../../Qt/5.3/clang_64/mkspecs/macx-clang/qmake.conf:
 ../../../Qt/5.3/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../Qt/5.3/clang_64/mkspecs/features/exclusive_builds.prf:
 ../../../Qt/5.3/clang_64/mkspecs/features/default_pre.prf:
 ../../../Qt/5.3/clang_64/mkspecs/features/mac/default_pre.prf:
@@ -502,7 +505,7 @@ GCS_for_UAV.app/Contents/Info.plist:
 	@sed -e "s,@SHORT_VERSION@,1.0,g" -e "s,@TYPEINFO@,????,g" -e "s,@ICON@,,g" -e "s,@BUNDLEIDENTIFIER@,JT.GCS_for_UAV,g" -e "s,@EXECUTABLE@,GCS_for_UAV,g" -e "s,@TYPEINFO@,????,g" ../../../Qt/5.3/clang_64/mkspecs/macx-clang/Info.plist.app >GCS_for_UAV.app/Contents/Info.plist
 dist: 
 	@test -d .tmp/GCS_for_UAV1.0.0 || mkdir -p .tmp/GCS_for_UAV1.0.0
-	$(COPY_FILE) --parents $(DIST) .tmp/GCS_for_UAV1.0.0/ && $(COPY_FILE) --parents mainwindow.h jtserialport.h qcustomplot.h .tmp/GCS_for_UAV1.0.0/ && $(COPY_FILE) --parents main.cpp mainwindow.cpp jtserialport.cpp qcustomplot.cpp .tmp/GCS_for_UAV1.0.0/ && $(COPY_FILE) --parents mainwindow.ui .tmp/GCS_for_UAV1.0.0/ && (cd `dirname .tmp/GCS_for_UAV1.0.0` && $(TAR) GCS_for_UAV1.0.0.tar GCS_for_UAV1.0.0 && $(COMPRESS) GCS_for_UAV1.0.0.tar) && $(MOVE) `dirname .tmp/GCS_for_UAV1.0.0`/GCS_for_UAV1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/GCS_for_UAV1.0.0
+	$(COPY_FILE) --parents $(DIST) .tmp/GCS_for_UAV1.0.0/ && $(COPY_FILE) --parents mainwindow.h jtserialport.h qcustomplot.h ui_mainwindow.h .tmp/GCS_for_UAV1.0.0/ && $(COPY_FILE) --parents main.cpp mainwindow.cpp jtserialport.cpp qcustomplot.cpp .tmp/GCS_for_UAV1.0.0/ && $(COPY_FILE) --parents mainwindow.ui .tmp/GCS_for_UAV1.0.0/ && (cd `dirname .tmp/GCS_for_UAV1.0.0` && $(TAR) GCS_for_UAV1.0.0.tar GCS_for_UAV1.0.0 && $(COMPRESS) GCS_for_UAV1.0.0.tar) && $(MOVE) `dirname .tmp/GCS_for_UAV1.0.0`/GCS_for_UAV1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/GCS_for_UAV1.0.0
 
 
 clean:compiler_clean 

@@ -97,7 +97,7 @@ void MainWindow::initGraph(QVector<double> accXVec, QVector<accData> accYVec, QV
     cp->xAxis->setRangeReversed(true);
     cp->replot();
 }
-
+/*
 void MainWindow::replotGraph(QVector<double> accXVec, QVector<accData> accYVec, QVector<double> gyrXVec, QVector<gyrData> gyrYVec, QVector<double> magXVec, QVector<magData> magYVec)
 {
 
@@ -116,4 +116,16 @@ void MainWindow::drawGyrGraph(gyrData gd)
 void MainWindow::drawMagGraph(magData md)
 {
      QCustomPlot *cp = findChild<QCustomPlot *>("customplot");
+}
+*/
+
+void MainWindow::setHeading()
+{
+    QLabel *l = findChild<QLabel *>("label");
+    QString s = PATH;
+    QImage img(s + "arrow.png");
+    l->setPixmap(QPixmap::fromImage(img));
+//    l->adjustSize();
+    l->resize(l->pixmap()->size());
+    l->show();
 }
