@@ -3,6 +3,7 @@
 #include <QtWebKitWidgets/QWebView>
 #include <QUrl>
 #include <QString>
+#include <QGenericMatrix>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -124,7 +125,13 @@ void MainWindow::setHeading()
     QLabel *l = findChild<QLabel *>("label");
     QString s = PATH;
     QImage img(s + "arrow.png");
-    l->setPixmap(QPixmap::fromImage(img));
+    QPixmap pm = QPixmap::fromImage(img);
+    QMatrix rm;
+    rm.rotate(90);
+
+    pm = pm.transformed(rm);
+
+    l->setPixmap(pm);
 //    l->adjustSize();
     l->resize(l->pixmap()->size());
     l->show();
