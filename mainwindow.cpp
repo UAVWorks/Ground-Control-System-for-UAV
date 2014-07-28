@@ -127,7 +127,7 @@ void MainWindow::setHeading()
     QImage img(s + "arrow.png");
     QPixmap pm = QPixmap::fromImage(img);
     QMatrix rm;
-    rm.rotate(90);
+    rm.rotate(70);
 
     pm = pm.transformed(rm);
 
