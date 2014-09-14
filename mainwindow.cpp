@@ -24,36 +24,9 @@ void MainWindow::selectMap(gpsData gd)
      v->load(QUrl("http://maps.googleapis.com/maps/api/staticmap?center=" + QString::number(gd.x) + "," + QString::number(gd.y) + "&zoom=17&size=400x300&maptype=satellite")); // maptype: satellite or roadmap
 }
 
-void MainWindow::initGraph(QVector<double> accXVec, QVector<accData> accYVec, QVector<double> gyrXVec, QVector<gyrData> gyrYVec, QVector<double> magXVec, QVector<magData> magYVec)
+void MainWindow::initGraph(QVector<double> accTVec, QVector<double> accXVec, QVector<double> accYVec, QVector<double> accZVec, QVector<double> gyrTVec, QVector<double> gyrXVec, QVector<double> gyrYVec, QVector<double> gyrZVec, QVector<double> magTVec, QVector<double> magXVec, QVector<double> magYVec, QVector<double> magZVec)
 {
     QCustomPlot *cp = findChild<QCustomPlot *>("customplot");
-
-    QVector<double> accYVecX(DATA_NUM);
-    QVector<double> accYVecY(DATA_NUM);
-    QVector<double> accYVecZ(DATA_NUM);
-
-    QVector<double> gyrYVecX(DATA_NUM);
-    QVector<double> gyrYVecY(DATA_NUM);
-    QVector<double> gyrYVecZ(DATA_NUM);
-
-    QVector<double> magYVecX(DATA_NUM);
-    QVector<double> magYVecY(DATA_NUM);
-    QVector<double> magYVecZ(DATA_NUM);
-
-    for (int i = 0; i < DATA_NUM; i++)
-    {
-        accYVecX[i] = accYVec[i].accX;
-        accYVecY[i] = accYVec[i].accY;
-        accYVecZ[i] = accYVec[i].accZ;
-
-        gyrYVecX[i] = gyrYVec[i].gyrX;
-        gyrYVecY[i] = gyrYVec[i].gyrY;
-        gyrYVecZ[i] = gyrYVec[i].gyrZ;
-
-        magYVecX[i] = magYVec[i].magX;
-        magYVecY[i] = magYVec[i].magY;
-        magYVecZ[i] = magYVec[i].magZ;
-    }
 
     cp->addGraph();
     cp->addGraph();
@@ -77,17 +50,17 @@ void MainWindow::initGraph(QVector<double> accXVec, QVector<accData> accYVec, QV
     cp->graph(7)->setPen(QPen(QColor(0, 0, 255, 170)));
     cp->graph(8)->setPen(QPen(QColor(0, 0, 255, 100)));
 
-    cp->graph(0)->setData(accXVec, accYVecX);
-    cp->graph(1)->setData(accXVec, accYVecY);
-    cp->graph(2)->setData(accXVec, accYVecZ);
+    cp->graph(0)->setData(accTVec, accXVec);
+    cp->graph(1)->setData(accTVec, accYVec);
+    cp->graph(2)->setData(accTVec, accZVec);
 
-    cp->graph(3)->setData(gyrXVec, gyrYVecX);
-    cp->graph(4)->setData(gyrXVec, gyrYVecY);
-    cp->graph(5)->setData(gyrXVec, gyrYVecZ);
+    cp->graph(3)->setData(gyrTVec, gyrXVec);
+    cp->graph(4)->setData(gyrTVec, gyrYVec);
+    cp->graph(5)->setData(gyrTVec, gyrZVec);
 
-    cp->graph(6)->setData(magXVec, magYVecX);
-    cp->graph(7)->setData(magXVec, magYVecY);
-    cp->graph(8)->setData(magXVec, magYVecZ);
+    cp->graph(6)->setData(magTVec, magXVec);
+    cp->graph(7)->setData(magTVec, magYVec);
+    cp->graph(8)->setData(magTVec, magZVec);
 
     cp->xAxis->setLabel("time");
     cp->yAxis->setLabel("value");
@@ -124,15 +97,17 @@ void MainWindow::setHeading()
 {
     QLabel *l = findChild<QLabel *>("label");
     QString s = PATH;
-    QImage img(s + "arrow.png");
+    QImage img(s + "arrowCircle.png");
     QPixmap pm = QPixmap::fromImage(img);
     QMatrix rm;
-    rm.rotate(70);
+    int angle = 180;
 
+    rm.rotate(angle);
     pm = pm.transformed(rm);
 
     l->setPixmap(pm);
 //    l->adjustSize();
-    l->resize(l->pixmap()->size());
+  //  l->resize(l->pixmap()->size());
+//    l->move(60 + 141 - 141*cos(angle/180*3.141592), 60-141*sin(angle/180*3.141592));
     l->show();
 }

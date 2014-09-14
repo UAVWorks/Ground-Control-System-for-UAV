@@ -31,8 +31,10 @@ public:
     QFrame *frame;
     QFrame *frame_4;
     QLabel *label_2;
+    QLabel *label_7;
     QFrame *frame_5;
     QLabel *label_6;
+    QLabel *label_8;
     QFrame *frame_6;
     QLabel *label_4;
     QWebView *webView;
@@ -49,6 +51,7 @@ public:
     QFrame *frame_8;
     QFrame *frame_9;
     QLabel *label_3;
+    QLabel *label_9;
     QFrame *frame_10;
     QLabel *label_15;
     QLabel *label;
@@ -86,6 +89,11 @@ public:
         font.setPointSize(20);
         label_2->setFont(font);
         label_2->setAlignment(Qt::AlignCenter);
+        label_7 = new QLabel(frame_4);
+        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setGeometry(QRect(140, 40, 221, 30));
+        label_7->setFont(font);
+        label_7->setAlignment(Qt::AlignCenter);
         frame_5 = new QFrame(frame);
         frame_5->setObjectName(QStringLiteral("frame_5"));
         frame_5->setGeometry(QRect(0, 100, 480, 100));
@@ -96,6 +104,11 @@ public:
         label_6->setGeometry(QRect(0, 0, 480, 30));
         label_6->setFont(font);
         label_6->setAlignment(Qt::AlignCenter);
+        label_8 = new QLabel(frame_5);
+        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setGeometry(QRect(140, 50, 211, 30));
+        label_8->setFont(font);
+        label_8->setAlignment(Qt::AlignCenter);
         frame_6 = new QFrame(frame);
         frame_6->setObjectName(QStringLiteral("frame_6"));
         frame_6->setGeometry(QRect(0, 200, 480, 369));
@@ -174,6 +187,11 @@ public:
         label_3->setGeometry(QRect(0, 0, 400, 30));
         label_3->setFont(font);
         label_3->setAlignment(Qt::AlignCenter);
+        label_9 = new QLabel(frame_9);
+        label_9->setObjectName(QStringLiteral("label_9"));
+        label_9->setGeometry(QRect(90, 50, 211, 30));
+        label_9->setFont(font);
+        label_9->setAlignment(Qt::AlignCenter);
         frame_10 = new QFrame(frame_3);
         frame_10->setObjectName(QStringLiteral("frame_10"));
         frame_10->setGeometry(QRect(0, 200, 400, 400));
@@ -186,7 +204,7 @@ public:
         label_15->setAlignment(Qt::AlignCenter);
         label = new QLabel(frame_10);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(60, 170, 282, 45));
+        label->setGeometry(QRect(60, 60, 282, 282));
         label->setAlignment(Qt::AlignCenter);
         frame_15 = new QFrame(frame_3);
         frame_15->setObjectName(QStringLiteral("frame_15"));
@@ -213,12 +231,15 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "GCS for UAV", 0));
         label_2->setText(QApplication::translate("MainWindow", "Current Time", 0));
+        label_7->setText(QApplication::translate("MainWindow", "2014.08.29 04:59 PM ", 0));
         label_6->setText(QApplication::translate("MainWindow", "Number of Satelites", 0));
+        label_8->setText(QApplication::translate("MainWindow", "4", 0));
         label_4->setText(QApplication::translate("MainWindow", "Map", 0));
         label_5->setText(QApplication::translate("MainWindow", "Sensor Status", 0));
         label_16->setText(QApplication::translate("MainWindow", "Pitch & Roll", 0));
         label_18->setText(QApplication::translate("MainWindow", "Motor Output", 0));
         label_3->setText(QApplication::translate("MainWindow", "Input Voltage", 0));
+        label_9->setText(QApplication::translate("MainWindow", "3.33 V", 0));
         label_15->setText(QApplication::translate("MainWindow", "Heading", 0));
         label->setText(QApplication::translate("MainWindow", "Arrow", 0));
         label_17->setText(QApplication::translate("MainWindow", "Altitude", 0));
