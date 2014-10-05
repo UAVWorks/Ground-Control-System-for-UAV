@@ -13,11 +13,11 @@ MAKEFILE      = Makefile
 CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 DEFINES       = -DQT_WEBKITWIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WEBKIT_LIB -DQT_QML_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_POSITIONING_LIB -DQT_SENSORS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
-CFLAGS        = -pipe -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -mmacosx-version-min=10.6 -Wall -W -fPIE $(DEFINES)
-CXXFLAGS      = -pipe -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -mmacosx-version-min=10.6 -Wall -W -fPIE $(DEFINES)
-INCPATH       = -I../../../Qt/5.3/clang_64/mkspecs/macx-clang -I. -I../../../Qt/5.3/clang_64/lib/QtWebKitWidgets.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtQuick.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtMultimediaWidgets.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtOpenGL.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtWebKit.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtQml.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtMultimedia.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtNetwork.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtPositioning.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtSensors.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -F/Users/jeongtaek/Qt/5.3/clang_64/lib
+CFLAGS        = -pipe -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -mmacosx-version-min=10.6 -Wall -W -fPIE $(DEFINES)
+CXXFLAGS      = -pipe -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -mmacosx-version-min=10.6 -Wall -W -fPIE $(DEFINES)
+INCPATH       = -I../../../Qt/5.3/clang_64/mkspecs/macx-clang -I. -I../../../Qt/5.3/clang_64/lib/QtWebKitWidgets.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtQuick.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtMultimediaWidgets.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtOpenGL.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtWebKit.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtQml.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtMultimedia.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtNetwork.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtPositioning.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtSensors.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers -I../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -F/Users/jeongtaek/Qt/5.3/clang_64/lib
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-LFLAGS        = -headerpad_max_install_names -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -mmacosx-version-min=10.6
+LFLAGS        = -headerpad_max_install_names -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -mmacosx-version-min=10.6
 LIBS          = $(SUBLIBS) -F/Users/jeongtaek/Qt/5.3/clang_64/lib -framework QtSerialPort -framework QtCore -framework QtWebKitWidgets -framework QtWebKit -framework QtNetwork -framework QtGui -framework QtWidgets -framework QtQuick -framework QtQml -framework QtMultimediaWidgets -framework QtMultimedia -framework QtOpenGL -framework QtPrintSupport -framework QtPositioning -framework QtSensors -framework OpenGL -framework AGL 
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
@@ -47,16 +47,12 @@ OBJECTS_DIR   = ./
 
 SOURCES       = main.cpp \
 		mainwindow.cpp \
-		jtserialport.cpp \
 		qcustomplot.cpp moc_mainwindow.cpp \
-		moc_jtserialport.cpp \
 		moc_qcustomplot.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
-		jtserialport.o \
 		qcustomplot.o \
 		moc_mainwindow.o \
-		moc_jtserialport.o \
 		moc_qcustomplot.o
 DIST          = ../../../Qt/5.3/clang_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.3/clang_64/mkspecs/qdevice.pri \
@@ -176,7 +172,6 @@ DIST          = ../../../Qt/5.3/clang_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.3/clang_64/mkspecs/features/lex.prf \
 		GCS_for_UAV.pro main.cpp \
 		mainwindow.cpp \
-		jtserialport.cpp \
 		qcustomplot.cpp
 QMAKE_TARGET  = GCS_for_UAV
 DESTDIR       = #avoid trailing-slash linebreak
@@ -186,7 +181,7 @@ TARGET        = GCS_for_UAV.app/Contents/MacOS/GCS_for_UAV
 QMAKE_COMP_QMAKE_OBJECTIVE_CFLAGS = -pipe \
 		-g \
 		-isysroot \
-		/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk \
+		/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk \
 		-mmacosx-version-min=10.6 \
 		-Wall \
 		-W
@@ -505,7 +500,7 @@ GCS_for_UAV.app/Contents/Info.plist:
 	@sed -e "s,@SHORT_VERSION@,1.0,g" -e "s,@TYPEINFO@,????,g" -e "s,@ICON@,,g" -e "s,@BUNDLEIDENTIFIER@,JT.GCS_for_UAV,g" -e "s,@EXECUTABLE@,GCS_for_UAV,g" -e "s,@TYPEINFO@,????,g" ../../../Qt/5.3/clang_64/mkspecs/macx-clang/Info.plist.app >GCS_for_UAV.app/Contents/Info.plist
 dist: 
 	@test -d .tmp/GCS_for_UAV1.0.0 || mkdir -p .tmp/GCS_for_UAV1.0.0
-	$(COPY_FILE) --parents $(DIST) .tmp/GCS_for_UAV1.0.0/ && $(COPY_FILE) --parents mainwindow.h jtserialport.h qcustomplot.h ui_mainwindow.h .tmp/GCS_for_UAV1.0.0/ && $(COPY_FILE) --parents main.cpp mainwindow.cpp jtserialport.cpp qcustomplot.cpp .tmp/GCS_for_UAV1.0.0/ && $(COPY_FILE) --parents mainwindow.ui .tmp/GCS_for_UAV1.0.0/ && (cd `dirname .tmp/GCS_for_UAV1.0.0` && $(TAR) GCS_for_UAV1.0.0.tar GCS_for_UAV1.0.0 && $(COMPRESS) GCS_for_UAV1.0.0.tar) && $(MOVE) `dirname .tmp/GCS_for_UAV1.0.0`/GCS_for_UAV1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/GCS_for_UAV1.0.0
+	$(COPY_FILE) --parents $(DIST) .tmp/GCS_for_UAV1.0.0/ && $(COPY_FILE) --parents mainwindow.h qcustomplot.h .tmp/GCS_for_UAV1.0.0/ && $(COPY_FILE) --parents main.cpp mainwindow.cpp qcustomplot.cpp .tmp/GCS_for_UAV1.0.0/ && $(COPY_FILE) --parents mainwindow.ui .tmp/GCS_for_UAV1.0.0/ && (cd `dirname .tmp/GCS_for_UAV1.0.0` && $(TAR) GCS_for_UAV1.0.0.tar GCS_for_UAV1.0.0 && $(COMPRESS) GCS_for_UAV1.0.0.tar) && $(MOVE) `dirname .tmp/GCS_for_UAV1.0.0`/GCS_for_UAV1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/GCS_for_UAV1.0.0
 
 
 clean:compiler_clean 
@@ -530,23 +525,65 @@ compiler_objective_c_make_all:
 compiler_objective_c_clean:
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_jtserialport.cpp moc_qcustomplot.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_qcustomplot.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_jtserialport.cpp moc_qcustomplot.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_qcustomplot.cpp
 moc_mainwindow.cpp: ../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
 		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
+		qcustomplot.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QObject \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qobject.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QPointer \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qpointer.h \
+		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QWidget \
+		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qwidget.h \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/QPainter \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/qpainter.h \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/QPaintEvent \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/qevent.h \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/QMouseEvent \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/QPixmap \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/qpixmap.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QVector \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qvector.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QString \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QDateTime \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qdatetime.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QMultiMap \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qmap.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QFlags \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qflags.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QDebug \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qdebug.h \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/QVector2D \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/qvector2d.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QStack \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qstack.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QCache \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qcache.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QMargins \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qmargins.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qmath.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qnumeric.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/QPrinter \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qprinter.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/QPrintEngine \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qprintengine.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QtNumeric \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/QtPrintSupport \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qabstractprintdialog.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qpagesetupdialog.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qprintdialog.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qprintpreviewdialog.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qprinterinfo.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qtprintsupportglobal.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qprintpreviewwidget.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qtprintsupportversion.h \
 		mainwindow.h
 	/Users/jeongtaek/Qt/5.3/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -I/Users/jeongtaek/Qt/5.3/clang_64/mkspecs/macx-clang -I/Users/jeongtaek/Dropbox/Development/GCS_for_UAV -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtWebKitWidgets.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtQuick.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtMultimediaWidgets.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtOpenGL.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtWebKit.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtQml.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtMultimedia.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtWidgets.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtNetwork.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtPositioning.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtSensors.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtGui.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtCore.framework/Headers -F/Users/jeongtaek/Qt/5.3/clang_64/lib mainwindow.h -o moc_mainwindow.cpp
 
-moc_jtserialport.cpp: ../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QObject \
-		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qobject.h \
-		jtserialport.h
-	/Users/jeongtaek/Qt/5.3/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -I/Users/jeongtaek/Qt/5.3/clang_64/mkspecs/macx-clang -I/Users/jeongtaek/Dropbox/Development/GCS_for_UAV -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtWebKitWidgets.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtQuick.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtMultimediaWidgets.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtOpenGL.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtWebKit.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtQml.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtMultimedia.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtWidgets.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtNetwork.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtPositioning.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtSensors.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtGui.framework/Headers -I/Users/jeongtaek/Qt/5.3/clang_64/lib/QtCore.framework/Headers -F/Users/jeongtaek/Qt/5.3/clang_64/lib jtserialport.h -o moc_jtserialport.cpp
-
-moc_qcustomplot.cpp: mainwindow.h \
-		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
-		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
-		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QObject \
+moc_qcustomplot.cpp: ../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QObject \
 		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qobject.h \
 		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QPointer \
 		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qpointer.h \
@@ -605,9 +642,6 @@ compiler_uic_clean:
 	-$(DEL_FILE) ui_mainwindow.h
 ui_mainwindow.h: mainwindow.ui \
 		qcustomplot.h \
-		mainwindow.h \
-		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
-		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
 		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QObject \
 		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qobject.h \
 		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QPointer \
@@ -674,21 +708,6 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 main.o: main.cpp mainwindow.h \
 		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
 		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
-		jtserialport.h \
-		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QObject \
-		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qobject.h \
-		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QApplication \
-		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qapplication.h \
-		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMessageBox \
-		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmessagebox.h \
-		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QPushButton \
-		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qpushbutton.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
-
-mainwindow.o: mainwindow.cpp mainwindow.h \
-		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
-		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
-		ui_mainwindow.h \
 		qcustomplot.h \
 		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QObject \
 		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qobject.h \
@@ -739,19 +758,71 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qtprintsupportglobal.h \
 		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qprintpreviewwidget.h \
 		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qtprintsupportversion.h \
-		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QUrl \
-		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qurl.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
+		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QApplication \
+		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qapplication.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
-jtserialport.o: jtserialport.cpp jtserialport.h \
-		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QObject \
-		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qobject.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o jtserialport.o jtserialport.cpp
-
-qcustomplot.o: qcustomplot.cpp qcustomplot.h \
-		mainwindow.h \
+mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
 		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
+		qcustomplot.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QObject \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qobject.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QPointer \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qpointer.h \
+		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QWidget \
+		../../../Qt/5.3/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qwidget.h \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/QPainter \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/qpainter.h \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/QPaintEvent \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/qevent.h \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/QMouseEvent \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/QPixmap \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/qpixmap.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QVector \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qvector.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QString \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qstring.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QDateTime \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qdatetime.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QMultiMap \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qmap.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QFlags \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qflags.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QDebug \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qdebug.h \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/QVector2D \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/qvector2d.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QStack \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qstack.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QCache \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qcache.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QMargins \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qmargins.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qmath.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qnumeric.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/QPrinter \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qprinter.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/QPrintEngine \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qprintengine.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QtNumeric \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/QtPrintSupport \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qabstractprintdialog.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qpagesetupdialog.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qprintdialog.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qprintpreviewdialog.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qprinterinfo.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qtprintsupportglobal.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qprintpreviewwidget.h \
+		../../../Qt/5.3/clang_64/lib/QtPrintSupport.framework/Versions/5/Headers/qtprintsupportversion.h \
+		ui_mainwindow.h \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QUrl \
+		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qurl.h \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/QGenericMatrix \
+		../../../Qt/5.3/clang_64/lib/QtGui.framework/Versions/5/Headers/qgenericmatrix.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
+
+qcustomplot.o: qcustomplot.cpp qcustomplot.h \
 		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QObject \
 		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/qobject.h \
 		../../../Qt/5.3/clang_64/lib/QtCore.framework/Versions/5/Headers/QPointer \
@@ -805,9 +876,6 @@ qcustomplot.o: qcustomplot.cpp qcustomplot.h \
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
-
-moc_jtserialport.o: moc_jtserialport.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_jtserialport.o moc_jtserialport.cpp
 
 moc_qcustomplot.o: moc_qcustomplot.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_qcustomplot.o moc_qcustomplot.cpp

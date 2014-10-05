@@ -4,23 +4,21 @@
 #
 #-------------------------------------------------
 
-QT       += core gui webkitwidgets
+QT       += core gui webkitwidgets printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = GCS_for_UAV
 TEMPLATE = app
 
+QMAKE_MAC_SDK = macosx10.9
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    jtserialport.cpp \
-    qcustomplot.cpp
+        mainwindow.cpp\
+        qcustomplot.cpp
 
-HEADERS  += mainwindow.h \
-    jtserialport.h \
-    qcustomplot.h \
-    ui_mainwindow.h
+HEADERS  += mainwindow.h\
+        qcustomplot.h
 
 FORMS    += mainwindow.ui
 
@@ -30,4 +28,3 @@ else:unix|win32: LIBS += -lQtSerialPort
 mac: LIBS += -framework QtWebKitWidgets
 else:unix|win32: LIBS += -lQtWebKitWidgets
 
-OTHER_FILES +=

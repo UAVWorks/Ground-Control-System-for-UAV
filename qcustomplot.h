@@ -26,7 +26,6 @@
 #ifndef QCUSTOMPLOT_H
 #define QCUSTOMPLOT_H
 
-#include "mainwindow.h"
 #include <QObject>
 #include <QPointer>
 #include <QWidget>
@@ -2519,9 +2518,6 @@ public:
   // setters:
   void setData(QCPDataMap *data, bool copy=false);
   void setData(const QVector<double> &key, const QVector<double> &value);
-  void setData(QVector<double> &x, QVector<accData> &y);
-  void setData(QVector<double> &x, QVector<gyrData> &y);
-  void setData(QVector<double> &x, QVector<magData> &y);
   void setDataKeyError(const QVector<double> &key, const QVector<double> &value, const QVector<double> &keyError);
   void setDataKeyError(const QVector<double> &key, const QVector<double> &value, const QVector<double> &keyErrorMinus, const QVector<double> &keyErrorPlus);
   void setDataValueError(const QVector<double> &key, const QVector<double> &value, const QVector<double> &valueError);
@@ -2560,7 +2556,6 @@ public:
 protected:
   // property members:
   QCPDataMap *mData;
-
   QPen mErrorPen;
   LineStyle mLineStyle;
   QCPScatterStyle mScatterStyle;
