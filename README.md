@@ -5,6 +5,6 @@ This project is ground control system for Unmanned Aerial Vehicle.<br/>
 Jungtaek Kim / jungtaek.kim@jt-inc.net<br/>
 
 1. Introduction
-2. Fuction
+2. Fuctions
 3. Message Format
 4. Reference
