@@ -6,6 +6,8 @@
 #include <QGenericMatrix>
 #include <QTimeEdit>
 
+#include <cstdlib>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -126,18 +128,42 @@ void MainWindow::initGraph()
     cp->xAxis->setRange(0, 10);
     cp->yAxis->setRange(-GRAPH_Y_RANGE, GRAPH_Y_RANGE);
 
-    cp->xAxis->setRangeReversed(true);
     cp->replot();
-}
-
-void MainWindow::setGraph(QVector<double> accTVec, QVector<double> accXVec, QVector<double> accYVec, QVector<double> accZVec, QVector<double> gyrTVec, QVector<double> gyrXVec, QVector<double> gyrYVec, QVector<double> gyrZVec, QVector<double> magTVec, QVector<double> magXVec, QVector<double> magYVec, QVector<double> magZVec)
-{
-
 }
 
 void MainWindow::setHeading(int angle)
 {
-    QLabel *l = findChild<QLabel *>("label");
+    QLabel *l = findChild<QLabel *>("headingImage");
+    QString s = PATH;
+    QImage img(s + "arrowCircle.png");
+    QPixmap pm = QPixmap::fromImage(img);
+    QMatrix rm;
+
+    rm.rotate(angle);
+    pm = pm.transformed(rm);
+
+    l->setPixmap(pm);
+    l->show();
+}
+
+void MainWindow::setRoll(int angle)
+{
+    QLabel *l = findChild<QLabel *>("rollImage");
+    QString s = PATH;
+    QImage img(s + "arrowCircle.png");
+    QPixmap pm = QPixmap::fromImage(img);
+    QMatrix rm;
+
+    rm.rotate(angle);
+    pm = pm.transformed(rm);
+
+    l->setPixmap(pm);
+    l->show();
+}
+
+void MainWindow::setPitch(int angle)
+{
+    QLabel *l = findChild<QLabel *>("pitchImage");
     QString s = PATH;
     QImage img(s + "arrowCircle.png");
     QPixmap pm = QPixmap::fromImage(img);
@@ -159,159 +185,202 @@ void MainWindow::readData()
     int i = 0;
     bool b = false;
 
-    if(size == -3)
+    if(size == -2)
     {
-        if(data[0] == (char) 0xff)
+        if(data[i+0] == (char) 0xfe)
         {
-            if (data[1] == (char) 0x01)
+            if(data[i+1] == (char) 0xff)
             {
-                ui->motorLabel_1->setNum(123);
-            }
-            else if (data[1] == (char) 0x02)
+            if (data[i+2] == (char) 0x01) // Roll
             {
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
+                rolFile->write(QString::number(te).toStdString().c_str());
+                rolFile->write("\n");
+                setRoll(te);
             }
-            else if (data[1] == (char) 0x03)
+            else if (data[i+2] == (char) 0x02) // Pitch
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
+                pitFile->write(QString::number(te).toStdString().c_str());
+                pitFile->write("\n");
+                this->setPitch(te);
+            }
+            else if (data[i+2] == (char) 0x03) // Yaw
+            {
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+
+                yawFile->write(QString::number(te).toStdString().c_str());
+                yawFile->write("\n");
                 this->setHeading(te);
             }
-            else if (data[1] == (char) 0x04)
+            else if (data[i+2] == (char) 0x0D) // Motor 1
             {
-                int te = 16 * 16 * 16 * data[2] + 16 * 16 * data[3] + 16 * data[4] + data[5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
+                mot1File->write(QString::number(te).toStdString().c_str());
+                mot1File->write("\n");
                 ui->motorLabel_1->setNum(te);
             }
-            else if (data[1] == (char) 0x05)
+            else if (data[i+2] == (char) 0x0E) // Motor 2
             {
-                int te = 16 * 16 * 16 * data[2] + 16 * 16 * data[3] + 16 * data[4] + data[5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
+                mot2File->write(QString::number(te).toStdString().c_str());
+                mot2File->write("\n");
                 ui->motorLabel_2->setNum(te);
             }
-            else if (data[1] == (char) 0x06)
+            else if (data[i+2] == (char) 0x0F) // Motor 3
             {
-                int te = 16 * 16 * 16 * data[2] + 16 * 16 * data[3] + 16 * data[4] + data[5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
+                mot3File->write(QString::number(te).toStdString().c_str());
+                mot3File->write("\n");
                 ui->motorLabel_3->setNum(te);
             }
-            else if (data[1] == (char) 0x07)
+            else if (data[i+2] == (char) 0x10) // Motor 4
             {
-                int te = 16 * 16 * 16 * data[2] + 16 * 16 * data[3] + 16 * data[4] + data[5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
+                mot4File->write(QString::number(te).toStdString().c_str());
+                mot4File->write("\n");
                 ui->motorLabel_4->setNum(te);
             }
-            else if (data[1] == (char) 0x08)
+            else if (data[i+2] == (char) 0x11) // Motor 5
             {
-                int te = 16 * 16 * 16 * data[2] + 16 * 16 * data[3] + 16 * data[4] + data[5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
+                mot5File->write(QString::number(te).toStdString().c_str());
+                mot5File->write("\n");
                 ui->motorLabel_5->setNum(te);
             }
-            else if (data[1] == (char) 0x09)
+            else if (data[i+2] == (char) 0x12) // Motor 6
             {
-                int te = 16 * 16 * 16 * data[2] + 16 * 16 * data[3] + 16 * data[4] + data[5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
+                mot6File->write(QString::number(te).toStdString().c_str());
+                mot6File->write("\n");
                 ui->motorLabel_6->setNum(te);
             }
-            else if (data[1] == (char) 0x0A)
+            else if (data[i+2] == (char) 0x04) // Acc X
             {
-                int te = 16 * 16 * 16 * data[2] + 16 * 16 * data[3] + 16 * data[4] + data[5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                accXFile->write(QString::number(te).toStdString().c_str());
+                accXFile->write("\n");
                 accXVec.pop_back();
-                accXVec.push_front(dt);
+                accXVec.push_front(te);
                 cp->graph(0)->setData(accTVec, accXVec);
                 cp->replot();
             }
-            else if (data[1] == (char) 0x0B)
+            else if (data[i+2] == (char) 0x05) // Acc Y
             {
-                int te = 16 * 16 * 16 * data[2] + 16 * 16 * data[3] + 16 * data[4] + data[5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                accYFile->write(QString::number(te).toStdString().c_str());
+                accYFile->write("\n");
                 accYVec.pop_back();
-                accYVec.push_front(dt);
+                accYVec.push_front(te);
                 cp->graph(1)->setData(accTVec, accYVec);
                 cp->replot();
             }
-            else if (data[1] == (char) 0x0C)
+            else if (data[i+2] == (char) 0x06) // Acc Z
             {
-                int te = 16 * 16 * 16 * data[2] + 16 * 16 * data[3] + 16 * data[4] + data[5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                accZFile->write(QString::number(te).toStdString().c_str());
+                accZFile->write("\n");
                 accZVec.pop_back();
-                accZVec.push_front(dt);
+                accZVec.push_front(te);
                 cp->graph(2)->setData(accTVec, accZVec);
                 cp->replot();
             }
-            else if (data[1] == (char) 0x0D)
+            else if (data[i+2] == (char) 0x07) // Gyr X
             {
-                int te = 16 * 16 * 16 * data[2] + 16 * 16 * data[3] + 16 * data[4] + data[5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                gyrXFile->write(QString::number(te).toStdString().c_str());
+                gyrXFile->write("\n");
                 gyrXVec.pop_back();
-                gyrXVec.push_front(dt);
+                gyrXVec.push_front(te);
                 cp->graph(3)->setData(gyrTVec, gyrXVec);
                 cp->replot();
             }
-            else if (data[1] == (char) 0x0E)
+            else if (data[i+2] == (char) 0x08) // Gyr Y
             {
-                int te = 16 * 16 * 16 * data[2] + 16 * 16 * data[3] + 16 * data[4] + data[5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                gyrYFile->write(QString::number(te).toStdString().c_str());
+                gyrYFile->write("\n");
                 gyrYVec.pop_back();
-                gyrYVec.push_front(dt);
+                gyrYVec.push_front(te);
                 cp->graph(4)->setData(gyrTVec, gyrYVec);
                 cp->replot();
             }
-            else if (data[1] == (char) 0x0F)
+            else if (data[i+2] == (char) 0x09) // Gyr Z
             {
-                int te = 16 * 16 * 16 * data[2] + 16 * 16 * data[3] + 16 * data[4] + data[5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                gyrZFile->write(QString::number(te).toStdString().c_str());
+                gyrZFile->write("\n");
                 gyrZVec.pop_back();
-                gyrZVec.push_front(dt);
+                gyrZVec.push_front(te);
                 cp->graph(5)->setData(gyrTVec, gyrZVec);
                 cp->replot();
             }
-            else if (data[1] == (char) 0x10)
+            else if (data[i+2] == (char) 0x0A) // Mag X
             {
-                int te = 16 * 16 * 16 * data[2] + 16 * 16 * data[3] + 16 * data[4] + data[5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                magXFile->write(QString::number(te).toStdString().c_str());
+                magXFile->write("\n");
                 magXVec.pop_back();
-                magXVec.push_front(dt);
+                magXVec.push_front(te);
                 cp->graph(6)->setData(magTVec, magXVec);
                 cp->replot();
             }
-            else if (data[1] == (char) 0x11)
+            else if (data[i+2] == (char) 0x0B) // Mag Y
             {
-                int te = 16 * 16 * 16 * data[2] + 16 * 16 * data[3] + 16 * data[4] + data[5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                magYFile->write(QString::number(te).toStdString().c_str());
+                magYFile->write("\n");
                 magYVec.pop_back();
-                magYVec.push_front(dt);
+                magYVec.push_front(te);
                 cp->graph(7)->setData(magTVec, magYVec);
                 cp->replot();
             }
-            else if (data[1] == (char) 0x12)
+            else if (data[i+2] == (char) 0x0C) // Mag Z
             {
-                int te = 16 * 16 * 16 * data[2] + 16 * 16 * data[3] + 16 * data[4] + data[5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                magZFile->write(QString::number(te).toStdString().c_str());
+                magZFile->write("\n");
                 magZVec.pop_back();
-                magZVec.push_front(dt);
+                magZVec.push_front(te);
                 cp->graph(8)->setData(magTVec, magZVec);
                 cp->replot();
             }
+        }
         }
     }
 
@@ -327,159 +396,200 @@ void MainWindow::readData()
 
     if(b && size >= i && data.size() == serial->readBufferSize())
     {
-        if(data[i+0] == (char) 0xff)
+        if(data[i+0] == (char) 0xfe)
         {
-            if (data[i+1] == (char) 0x01) // Roll
+            if(data[i+1] == (char) 0xff)
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+            if (data[i+2] == (char) 0x01) // Roll
+            {
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                ui->motorLabel_1->setNum(te);
+                rolFile->write(QString::number(te).toStdString().c_str());
+                rolFile->write("\n");
+                setRoll(te);
             }
-            else if (data[i+1] == (char) 0x02) // Pitch
+            else if (data[i+2] == (char) 0x02) // Pitch
             {
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
+                pitFile->write(QString::number(te).toStdString().c_str());
+                pitFile->write("\n");
+                this->setPitch(te);
             }
-            else if (data[i+1] == (char) 0x03) // Yaw
+            else if (data[i+2] == (char) 0x03) // Yaw
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
+                yawFile->write(QString::number(te).toStdString().c_str());
+                yawFile->write("\n");
                 this->setHeading(te);
             }
-            else if (data[i+1] == (char) 0x04) // Motor 1
+            else if (data[i+2] == (char) 0x0D) // Motor 1
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
+                mot1File->write(QString::number(te).toStdString().c_str());
+                mot1File->write("\n");
                 ui->motorLabel_1->setNum(te);
             }
-            else if (data[i+1] == (char) 0x05) // Motor 2
+            else if (data[i+2] == (char) 0x0E) // Motor 2
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
+                mot2File->write(QString::number(te).toStdString().c_str());
+                mot2File->write("\n");
                 ui->motorLabel_2->setNum(te);
             }
-            else if (data[i+1] == (char) 0x06) // Motor 3
+            else if (data[i+2] == (char) 0x0F) // Motor 3
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
+                mot3File->write(QString::number(te).toStdString().c_str());
+                mot3File->write("\n");
                 ui->motorLabel_3->setNum(te);
             }
-            else if (data[i+1] == (char) 0x07) // Motor 4
+            else if (data[i+2] == (char) 0x10) // Motor 4
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
+                mot4File->write(QString::number(te).toStdString().c_str());
+                mot4File->write("\n");
                 ui->motorLabel_4->setNum(te);
             }
-            else if (data[i+1] == (char) 0x08) // Motor 5
+            else if (data[i+2] == (char) 0x11) // Motor 5
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
+                mot5File->write(QString::number(te).toStdString().c_str());
+                mot5File->write("\n");
                 ui->motorLabel_5->setNum(te);
             }
-            else if (data[i+1] == (char) 0x09) // Motor 6
+            else if (data[i+2] == (char) 0x12) // Motor 6
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
+                mot6File->write(QString::number(te).toStdString().c_str());
+                mot6File->write("\n");
                 ui->motorLabel_6->setNum(te);
             }
-            else if (data[i+1] == (char) 0x0A) // Acc X
+            else if (data[i+2] == (char) 0x04) // Acc X
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                accXFile->write(QString::number(te).toStdString().c_str());
+                accXFile->write("\n");
                 accXVec.pop_back();
-                accXVec.push_front(dt);
+                accXVec.push_front(te);
                 cp->graph(0)->setData(accTVec, accXVec);
                 cp->replot();
             }
-            else if (data[i+1] == (char) 0x0B) // Acc Y
+            else if (data[i+2] == (char) 0x05) // Acc Y
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                accYFile->write(QString::number(te).toStdString().c_str());
+                accYFile->write("\n");
                 accYVec.pop_back();
-                accYVec.push_front(dt);
+                accYVec.push_front(te);
                 cp->graph(1)->setData(accTVec, accYVec);
                 cp->replot();
             }
-            else if (data[i+1] == (char) 0x0C) // Acc Z
+            else if (data[i+2] == (char) 0x06) // Acc Z
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                accZFile->write(QString::number(te).toStdString().c_str());
+                accZFile->write("\n");
                 accZVec.pop_back();
-                accZVec.push_front(dt);
+                accZVec.push_front(te);
                 cp->graph(2)->setData(accTVec, accZVec);
                 cp->replot();
             }
-            else if (data[i+1] == (char) 0x0D) // Gyr X
+            else if (data[i+2] == (char) 0x07) // Gyr X
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                gyrXFile->write(QString::number(te).toStdString().c_str());
+                gyrXFile->write("\n");
                 gyrXVec.pop_back();
-                gyrXVec.push_front(dt);
+                gyrXVec.push_front(te);
                 cp->graph(3)->setData(gyrTVec, gyrXVec);
                 cp->replot();
             }
-            else if (data[i+1] == (char) 0x0E) // Gyr Y
+            else if (data[i+2] == (char) 0x08) // Gyr Y
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                gyrYFile->write(QString::number(te).toStdString().c_str());
+                gyrYFile->write("\n");
                 gyrYVec.pop_back();
-                gyrYVec.push_front(dt);
+                gyrYVec.push_front(te);
                 cp->graph(4)->setData(gyrTVec, gyrYVec);
                 cp->replot();
             }
-            else if (data[i+1] == (char) 0x0F) // Gyr Z
+            else if (data[i+2] == (char) 0x09) // Gyr Z
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                gyrZFile->write(QString::number(te).toStdString().c_str());
+                gyrZFile->write("\n");
                 gyrZVec.pop_back();
-                gyrZVec.push_front(dt);
+                gyrZVec.push_front(te);
                 cp->graph(5)->setData(gyrTVec, gyrZVec);
                 cp->replot();
             }
-            else if (data[i+1] == (char) 0x10) // Mag X
+            else if (data[i+2] == (char) 0x0A) // Mag X
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                magXFile->write(QString::number(te).toStdString().c_str());
+                magXFile->write("\n");
                 magXVec.pop_back();
-                magXVec.push_front(dt);
+                magXVec.push_front(te);
                 cp->graph(6)->setData(magTVec, magXVec);
                 cp->replot();
             }
-            else if (data[i+1] == (char) 0x11) // Mag Y
+            else if (data[i+2] == (char) 0x0B) // Mag Y
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                magYFile->write(QString::number(te).toStdString().c_str());
+                magYFile->write("\n");
                 magYVec.pop_back();
-                magYVec.push_front(dt);
+                magYVec.push_front(te);
                 cp->graph(7)->setData(magTVec, magYVec);
                 cp->replot();
             }
-            else if (data[i+1] == (char) 0x12) // Mag Z
+            else if (data[i+2] == (char) 0x0C) // Mag Z
             {
-                int te = 16 * 16 * 16 * data[i+2] + 16 * 16 * data[i+3] + 16 * data[i+4] + data[i+5];
+                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
+                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
 
-                float dt = (float)te / 256.0;
-
+                magZFile->write(QString::number(te).toStdString().c_str());
+                magZFile->write("\n");
                 magZVec.pop_back();
-                magZVec.push_front(dt);
+                magZVec.push_front(te);
                 cp->graph(8)->setData(magTVec, magZVec);
                 cp->replot();
             }
+        }
         }
     }
 }
@@ -493,6 +603,8 @@ void MainWindow::initGCS()
 
     setMap(gd);
     setHeading(0);
+    setRoll(0);
+    setPitch(0);
     initGraph();
     ui->time->setText(QDate::currentDate().toString("yyyy.MM.dd") + " " + QTime::currentTime().toString());
 }
@@ -502,7 +614,7 @@ void MainWindow::on_connect_clicked()
     serial->setPortName(QString("/dev/tty.SLAB_USBtoUART"));
     serial->setDataBits(QSerialPort::Data8);
     serial->setParity(QSerialPort::NoParity);
-    serial->setBaudRate(QSerialPort::Baud38400);
+    serial->setBaudRate(QSerialPort::Baud115200);
     serial->setStopBits(QSerialPort::OneStop);
     serial->setFlowControl(QSerialPort::NoFlowControl);
     serial->setReadBufferSize(30);
@@ -511,6 +623,46 @@ void MainWindow::on_connect_clicked()
     {
         ui->connectButton->setEnabled(false);
         ui->disconnectButton->setEnabled(true);
+
+        fileNameBase = QDate::currentDate().toString("yyyy.MM.dd") + "." + QTime::currentTime().toString("hh.mm.ss");
+
+        accXFile = new QFile(PATH_LOG + fileNameBase + "_accX.txt");
+        accYFile = new QFile(PATH_LOG + fileNameBase + "_accY.txt");
+        accZFile = new QFile(PATH_LOG + fileNameBase + "_accZ.txt");
+        magXFile = new QFile(PATH_LOG + fileNameBase + "_magX.txt");
+        magYFile = new QFile(PATH_LOG + fileNameBase + "_magY.txt");
+        magZFile = new QFile(PATH_LOG + fileNameBase + "_magZ.txt");
+        gyrXFile = new QFile(PATH_LOG + fileNameBase + "_gyrX.txt");
+        gyrYFile = new QFile(PATH_LOG + fileNameBase + "_gyrY.txt");
+        gyrZFile = new QFile(PATH_LOG + fileNameBase + "_gyrZ.txt");
+        mot1File = new QFile(PATH_LOG + fileNameBase + "_mot1.txt");
+        mot2File = new QFile(PATH_LOG + fileNameBase + "_mot2.txt");
+        mot3File = new QFile(PATH_LOG + fileNameBase + "_mot3.txt");
+        mot4File = new QFile(PATH_LOG + fileNameBase + "_mot4.txt");
+        mot5File = new QFile(PATH_LOG + fileNameBase + "_mot5.txt");
+        mot6File = new QFile(PATH_LOG + fileNameBase + "_mot6.txt");
+        rolFile = new QFile(PATH_LOG + fileNameBase + "_rol.txt");
+        pitFile = new QFile(PATH_LOG + fileNameBase + "_pit.txt");
+        yawFile = new QFile(PATH_LOG + fileNameBase + "_yaw.txt");
+
+        accXFile->open(QIODevice::WriteOnly);
+        accYFile->open(QIODevice::WriteOnly);
+        accZFile->open(QIODevice::WriteOnly);
+        magXFile->open(QIODevice::WriteOnly);
+        magYFile->open(QIODevice::WriteOnly);
+        magZFile->open(QIODevice::WriteOnly);
+        gyrXFile->open(QIODevice::WriteOnly);
+        gyrYFile->open(QIODevice::WriteOnly);
+        gyrZFile->open(QIODevice::WriteOnly);
+        mot1File->open(QIODevice::WriteOnly);
+        mot2File->open(QIODevice::WriteOnly);
+        mot3File->open(QIODevice::WriteOnly);
+        mot4File->open(QIODevice::WriteOnly);
+        mot5File->open(QIODevice::WriteOnly);
+        mot6File->open(QIODevice::WriteOnly);
+        rolFile->open(QIODevice::WriteOnly);
+        pitFile->open(QIODevice::WriteOnly);
+        yawFile->open(QIODevice::WriteOnly);
     }
     else
     {
@@ -521,6 +673,25 @@ void MainWindow::on_connect_clicked()
 void MainWindow::on_disconnect_clicked()
 {
     serial->close();
+
+    accXFile->close();
+    accYFile->close();
+    accZFile->close();
+    magXFile->close();
+    magYFile->close();
+    magZFile->close();
+    gyrXFile->close();
+    gyrYFile->close();
+    gyrZFile->close();
+    mot1File->close();
+    mot2File->close();
+    mot3File->close();
+    mot4File->close();
+    mot5File->close();
+    mot6File->close();
+    rolFile->close();
+    pitFile->close();
+    yawFile->close();
 
     ui->connectButton->setEnabled(true);
     ui->disconnectButton->setEnabled(false);

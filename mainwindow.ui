@@ -263,7 +263,7 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QLabel" name="Altitude">
+     <widget class="QLabel" name="label_16">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -278,7 +278,39 @@
        </font>
       </property>
       <property name="text">
-       <string>Altitude</string>
+       <string>Pitch &amp; Roll</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="pitchImage">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>50</y>
+        <width>230</width>
+        <height>230</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Pitch</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="rollImage">
+      <property name="geometry">
+       <rect>
+        <x>245</x>
+        <y>50</y>
+        <width>230</width>
+        <height>230</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Roll</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -713,7 +745,7 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QLabel" name="label_15">
+     <widget class="QLabel" name="Altitude">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -728,7 +760,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Heading</string>
+       <string>Altitude</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -737,14 +769,14 @@
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>40</y>
-        <width>282</width>
-        <height>282</height>
+        <x>170</x>
+        <y>140</y>
+        <width>62</width>
+        <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>Arrow</string>
+       <string>Debug</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -766,13 +798,13 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QLabel" name="label_16">
+     <widget class="QLabel" name="Heading">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
         <width>400</width>
-        <height>30</height>
+        <height>40</height>
        </rect>
       </property>
       <property name="font">
@@ -781,7 +813,23 @@
        </font>
       </property>
       <property name="text">
-       <string>Pitch &amp; Roll</string>
+       <string>Heading</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="headingImage">
+      <property name="geometry">
+       <rect>
+        <x>85</x>
+        <y>50</y>
+        <width>230</width>
+        <height>230</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Heading</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>

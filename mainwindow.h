@@ -8,10 +8,11 @@
 #include "qcustomplot.h"
 
 #define DATA_NUM 1000
-#define GRAPH_Y_RANGE 260
+#define GRAPH_Y_RANGE 1000
 #define PATH "/Users/jeongtaek/Dropbox/Development/GCS_for_UAV/Resources/"
+#define PATH_LOG "/Users/jeongtaek/Dropbox/Development/GCS_for_UAV/Logs/"
 
-#define DATASIZE 7
+#define DATASIZE 8
 
 #define STARTBYTE 0xff
 #define ROLL 0x01
@@ -64,6 +65,29 @@ private:
     QCustomPlot *cp;
     QTimer *timer;
 
+    QString fileNameBase;
+
+    char receiveData[4];
+
+    QFile *accXFile;
+    QFile *accYFile;
+    QFile *accZFile;
+    QFile *magXFile;
+    QFile *magYFile;
+    QFile *magZFile;
+    QFile *gyrXFile;
+    QFile *gyrYFile;
+    QFile *gyrZFile;
+    QFile *mot1File;
+    QFile *mot2File;
+    QFile *mot3File;
+    QFile *mot4File;
+    QFile *mot5File;
+    QFile *mot6File;
+    QFile *rolFile;
+    QFile *pitFile;
+    QFile *yawFile;
+
     QVector<double> accTVec;
     QVector<double> accXVec;
     QVector<double> accYVec;
@@ -82,8 +106,9 @@ private:
     void setMap(gpsData d);
     void initGCS();
     void initGraph();
-    void setGraph(QVector<double> accTVec, QVector<double> accXVec, QVector<double> accYVec, QVector<double> accZVec, QVector<double> gyrTVec, QVector<double> gyrXVec, QVector<double> gyrYVec, QVector<double> gyrZVec, QVector<double> magTVec, QVector<double> magXVec, QVector<double> magYVec, QVector<double> magZVec);
     void setHeading(int angle);
+    void setRoll(int angle);
+    void setPitch(int angle);
 };
 
 #endif // MAINWINDOW_H
