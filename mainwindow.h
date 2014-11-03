@@ -109,6 +109,7 @@ private:
     void setHeading(int angle);
     void setRoll(int angle);
     void setPitch(int angle);
+    float checkComplement(unsigned char te1, unsigned char te2, unsigned char te3, unsigned char te4);
 };
 
 #endif // MAINWINDOW_H

@@ -193,8 +193,12 @@ void MainWindow::readData()
             {
             if (data[i+2] == (char) 0x01) // Roll
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 rolFile->write(QString::number(te).toStdString().c_str());
                 rolFile->write("\n");
@@ -202,8 +206,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x02) // Pitch
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 pitFile->write(QString::number(te).toStdString().c_str());
                 pitFile->write("\n");
@@ -211,8 +219,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x03) // Yaw
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 yawFile->write(QString::number(te).toStdString().c_str());
                 yawFile->write("\n");
@@ -220,8 +232,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x0D) // Motor 1
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 mot1File->write(QString::number(te).toStdString().c_str());
                 mot1File->write("\n");
@@ -229,8 +245,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x0E) // Motor 2
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 mot2File->write(QString::number(te).toStdString().c_str());
                 mot2File->write("\n");
@@ -238,8 +258,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x0F) // Motor 3
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 mot3File->write(QString::number(te).toStdString().c_str());
                 mot3File->write("\n");
@@ -247,8 +271,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x10) // Motor 4
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 mot4File->write(QString::number(te).toStdString().c_str());
                 mot4File->write("\n");
@@ -256,8 +284,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x11) // Motor 5
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 mot5File->write(QString::number(te).toStdString().c_str());
                 mot5File->write("\n");
@@ -265,8 +297,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x12) // Motor 6
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 mot6File->write(QString::number(te).toStdString().c_str());
                 mot6File->write("\n");
@@ -274,8 +310,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x04) // Acc X
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 accXFile->write(QString::number(te).toStdString().c_str());
                 accXFile->write("\n");
@@ -286,8 +326,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x05) // Acc Y
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 accYFile->write(QString::number(te).toStdString().c_str());
                 accYFile->write("\n");
@@ -298,8 +342,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x06) // Acc Z
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 accZFile->write(QString::number(te).toStdString().c_str());
                 accZFile->write("\n");
@@ -310,8 +358,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x07) // Gyr X
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 gyrXFile->write(QString::number(te).toStdString().c_str());
                 gyrXFile->write("\n");
@@ -322,8 +374,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x08) // Gyr Y
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 gyrYFile->write(QString::number(te).toStdString().c_str());
                 gyrYFile->write("\n");
@@ -334,8 +390,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x09) // Gyr Z
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 gyrZFile->write(QString::number(te).toStdString().c_str());
                 gyrZFile->write("\n");
@@ -346,8 +406,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x0A) // Mag X
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 magXFile->write(QString::number(te).toStdString().c_str());
                 magXFile->write("\n");
@@ -358,8 +422,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x0B) // Mag Y
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 magYFile->write(QString::number(te).toStdString().c_str());
                 magYFile->write("\n");
@@ -370,8 +438,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x0C) // Mag Z
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 magZFile->write(QString::number(te).toStdString().c_str());
                 magZFile->write("\n");
@@ -402,8 +474,12 @@ void MainWindow::readData()
             {
             if (data[i+2] == (char) 0x01) // Roll
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 rolFile->write(QString::number(te).toStdString().c_str());
                 rolFile->write("\n");
@@ -411,8 +487,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x02) // Pitch
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 pitFile->write(QString::number(te).toStdString().c_str());
                 pitFile->write("\n");
@@ -420,8 +500,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x03) // Yaw
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 yawFile->write(QString::number(te).toStdString().c_str());
                 yawFile->write("\n");
@@ -429,8 +513,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x0D) // Motor 1
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 mot1File->write(QString::number(te).toStdString().c_str());
                 mot1File->write("\n");
@@ -438,8 +526,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x0E) // Motor 2
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 mot2File->write(QString::number(te).toStdString().c_str());
                 mot2File->write("\n");
@@ -447,8 +539,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x0F) // Motor 3
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 mot3File->write(QString::number(te).toStdString().c_str());
                 mot3File->write("\n");
@@ -456,8 +552,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x10) // Motor 4
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 mot4File->write(QString::number(te).toStdString().c_str());
                 mot4File->write("\n");
@@ -465,8 +565,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x11) // Motor 5
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 mot5File->write(QString::number(te).toStdString().c_str());
                 mot5File->write("\n");
@@ -474,8 +578,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x12) // Motor 6
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 mot6File->write(QString::number(te).toStdString().c_str());
                 mot6File->write("\n");
@@ -483,8 +591,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x04) // Acc X
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 accXFile->write(QString::number(te).toStdString().c_str());
                 accXFile->write("\n");
@@ -495,8 +607,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x05) // Acc Y
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 accYFile->write(QString::number(te).toStdString().c_str());
                 accYFile->write("\n");
@@ -507,8 +623,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x06) // Acc Z
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 accZFile->write(QString::number(te).toStdString().c_str());
                 accZFile->write("\n");
@@ -519,8 +639,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x07) // Gyr X
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 gyrXFile->write(QString::number(te).toStdString().c_str());
                 gyrXFile->write("\n");
@@ -531,8 +655,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x08) // Gyr Y
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 gyrYFile->write(QString::number(te).toStdString().c_str());
                 gyrYFile->write("\n");
@@ -543,8 +671,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x09) // Gyr Z
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 gyrZFile->write(QString::number(te).toStdString().c_str());
                 gyrZFile->write("\n");
@@ -555,8 +687,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x0A) // Mag X
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 magXFile->write(QString::number(te).toStdString().c_str());
                 magXFile->write("\n");
@@ -567,8 +703,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x0B) // Mag Y
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 magYFile->write(QString::number(te).toStdString().c_str());
                 magYFile->write("\n");
@@ -579,8 +719,12 @@ void MainWindow::readData()
             }
             else if (data[i+2] == (char) 0x0C) // Mag Z
             {
-                int te2 = (unsigned char) data[4+i]*256.0 + (unsigned char) data[3+i];
-                float te = (float) te2 / 65536.0 + (unsigned char) data[6+i]*256.0 + (unsigned char) data[5+i];
+                unsigned char te1 = (unsigned char) data[6+i];
+                unsigned char te2 = (unsigned char) data[5+i];
+                unsigned char te3 = (unsigned char) data[4+i];
+                unsigned char te4 = (unsigned char) data[3+i];
+
+                float te = checkComplement(te1, te2, te3, te4);
 
                 magZFile->write(QString::number(te).toStdString().c_str());
                 magZFile->write("\n");
@@ -700,4 +844,15 @@ void MainWindow::on_disconnect_clicked()
 void MainWindow::timeUpdate()
 {
     ui->time->setText(QDate::currentDate().toString("yyyy.MM.dd") + " " + QTime::currentTime().toString());
+}
+
+float MainWindow::checkComplement(unsigned char te1, unsigned char te2, unsigned char te3, unsigned char te4)
+{
+    float temp1 = te3*256.0 + te4;
+    float temp2 = temp1 / 65536.0 + te1*256.0 + te2;
+
+    if(temp2 >= 32768.0)
+        return (temp2-65536.0);
+    else
+        return temp2;
 }
